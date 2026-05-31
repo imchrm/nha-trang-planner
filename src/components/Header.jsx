@@ -26,8 +26,8 @@ export default function Header({ phase, today, daysUntilTrip, currentDayNum }) {
         src={familyPhoto}
         alt=""
         aria-hidden="true"
-        className="absolute top-0 right-0 h-full w-auto object-cover object-top pointer-events-none select-none"
-        style={{ opacity: 0.85, maxWidth: '50%' }}
+        className="absolute top-0 right-0 object-contain object-right-top pointer-events-none select-none"
+        style={{ opacity: 0.85, width: '180px', height: '160px' }}
       />
       <svg className="absolute bottom-0 left-0 opacity-10 pointer-events-none" width="150" height="80" viewBox="0 0 150 80" fill="none">
         <path d="M0 60 Q 25 40, 50 55 T 100 55 T 150 50 L 150 80 L 0 80 Z" fill={CAT.birthday.main} />
