@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import { MapPin } from 'lucide-react';
 import { THEME, CAT } from '../constants/theme.js';
 import { pluralDays } from '../utils/helpers.js';
+import familyPhoto from '../assets/family_back_00.png';
 
 export default function Header({ phase, today, daysUntilTrip, currentDayNum }) {
   let subtitle;
@@ -21,10 +22,13 @@ export default function Header({ phase, today, daysUntilTrip, currentDayNum }) {
 
   return (
     <header className="relative overflow-hidden">
-      {/* Decorative tropical SVG */}
-      <svg className="absolute top-0 right-0 opacity-15 pointer-events-none" width="200" height="200" viewBox="0 0 200 200" fill="none">
-        <path d="M100 30 Q 130 60, 120 100 Q 140 80, 170 90 Q 150 110, 130 130 Q 160 140, 160 170 Q 130 150, 110 170 Q 100 140, 80 160 Q 90 130, 60 130 Q 80 110, 60 90 Q 90 100, 80 70 Q 100 80, 100 30 Z" fill={CAT.active.main} />
-      </svg>
+      <img
+        src={familyPhoto}
+        alt=""
+        aria-hidden="true"
+        className="absolute top-0 right-0 h-full w-auto object-cover object-top pointer-events-none select-none"
+        style={{ opacity: 0.85, maxWidth: '50%' }}
+      />
       <svg className="absolute bottom-0 left-0 opacity-10 pointer-events-none" width="150" height="80" viewBox="0 0 150 80" fill="none">
         <path d="M0 60 Q 25 40, 50 55 T 100 55 T 150 50 L 150 80 L 0 80 Z" fill={CAT.birthday.main} />
         <path d="M0 65 Q 25 50, 50 62 T 100 62 T 150 60 L 150 80 L 0 80 Z" fill={CAT.active.main} opacity="0.5" />
