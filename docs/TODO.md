@@ -30,7 +30,7 @@
 
 ## Технический долг
 
-- [ ] Разбить App.jsx на модули при достижении ~3000 строк:
+- [ ] Разбить App.jsx на модули:
   - `src/data/cards.js` — массив CARDS
   - `src/data/days.js` — массив DAYS + TRIP
   - `src/constants/theme.js` — THEME, CAT
