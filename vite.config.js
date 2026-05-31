@@ -5,4 +5,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   base: '/tours/nha_trang_planner/',
   plugins: [react()],
+  test: {
+    environment: 'node',
+  },
 })

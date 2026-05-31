@@ -1,0 +1,14 @@
+{
+  "name": "Планировщик Нячанг 2026",
+  "short_name": "Нячанг 2026",
+  "description": "Персональный планировщик отдыха для Оксаны, Данила и Дарьи",
+  "start_url": "/tours/nha_trang_planner/",
+  "scope": "/tours/nha_trang_planner/",
+  "display": "standalone",
+  "background_color": "#FBF5EC",
+  "theme_color": "#1E7A7A",
+  "orientation": "portrait-primary",
+  "icons": [
+    { "src": "/tours/nha_trang_planner/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

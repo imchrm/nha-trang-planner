@@ -161,6 +161,13 @@
   }
 }
 
+@media print {
+  .no-print { display: none !important; }
+  body { background: white !important; color: black !important; }
+  * { box-shadow: none !important; }
+  .rounded-2xl, .rounded-xl { border-radius: 8px !important; }
+}
+
 .ticks {
   position: relative;
   width: 100%;
