@@ -1,16 +1,134 @@
-# React + Vite
+# 🌴 Планировщик отдыха в Нячанге
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Персональный интерактивный планировщик отпуска для Оксаны, Данила и Дарьи.  
+**Нячанг, Вьетнам · 30 мая — 9 июня 2026 г.**
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## О проекте
 
-## React Compiler
+Одностраничное React-приложение в стиле «тропического журнала путешествий». Позволяет самостоятельно собрать расписание отдыха из готовых карточек активностей, учитывая ритм нагрузок и предпочтения детей.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Для кого
 
-## Expanding the ESLint configuration
+| Человек | Роль |
+|---------|------|
+| Оксана | Мама, основной пользователь |
+| Данил | Сын, 14 лет |
+| Дарья | Дочь, 14 лет (день рождения 5 июня) |
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+**Отель:** Libra Hotel Nha Trang, 04 Hung Vuong Street, Loc Tho Ward
+
+---
+
+## Функциональность
+
+### Конструктор расписания
+- **11 дней** (30 мая — 9 июня): первый и последний заблокированы («Прилёт», «Отъезд»)
+- **9 свободных дней** для планирования
+- **5 июня** — особый день (день рождения Дарьи, только специальные карточки)
+- Drag & drop на десктопе / тап-взаимодействие на мобильном
+- Ограничение слотов: один «Весь день» или комбинация «Полдня» + «Вечер»
+- А-5 (Далат 2 дня) занимает два соседних слота
+
+### Карточки активностей (30 штук)
+
+| Категория | Кол-во | Цвет |
+|-----------|--------|------|
+| 🎂 День рождения Дарьи | 7 (ДР-1…ДР-7) | Коралловый |
+| 🏄 Активные дни | 13 (А-1…А-13) | Бирюзовый |
+| 🌿 Отдых и релакс | 10 (Р-1…Р-10) | Оливковый |
+
+Каждая карточка содержит: название, описание, длительность, оценку интенсивности (1–10), оценку впечатлений (1–10), примерную стоимость, советы.
+
+### Индикатор ритма нагрузки
+Гистограмма под расписанием с цветовыми зонами:
+- 🟢 1–3: отдых
+- 🟡 4–6: умеренно  
+- 🟠 7–8: активно
+- 🔴 9–10: экстрим
+
+Предупреждение при двух активных днях подряд (интенсивность 7+).
+
+### Сводка
+Итоговый блок: заполнено дней, примерный бюджет, средняя интенсивность и впечатления.
+
+---
+
+## Адаптивность
+
+| Устройство | Ширина | Лейаут |
+|-----------|--------|--------|
+| Мобильный | < 640px | Одна колонка, таб-переключение «Каталог / Расписание» |
+| Планшет | 640–1023px | Две колонки 40/60, drag & drop + кнопки |
+| Десктоп | 1024px+ | Две колонки 35/65, sticky-панели, полный drag & drop |
+
+---
+
+## Стек
+
+- **React** (useState, useReducer, useRef, useCallback, useMemo, useEffect)
+- **Vite** — сборщик
+- **Tailwind CSS** — стилизация
+- **lucide-react** — иконки
+- **HTML5 Drag and Drop API** — перетаскивание
+- **Google Fonts** — Playfair Display + Source Sans 3
+
+Все данные захардкожены в файле. Без localStorage, внешних API и зависимостей от бэкенда.
+
+---
+
+## Запуск
+
+```bash
+npm install
+npm run dev
+```
+
+Открыть в браузере: `http://localhost:5173`
+
+### Сборка
+
+```bash
+npm run build
+```
+
+---
+
+## Структура компонентов
+
+```
+App
+├── Header                    # Заголовок, имена, даты, SVG-декор
+├── MobileNavBar              # Таб-бар (<640px, sticky bottom)
+├── DesktopLayout (≥640px)
+│   ├── LeftPanel (sticky)
+│   │   ├── CategoryTabs      # Д.Р. / Активные / Отдых
+│   │   └── CardPalette
+│   │       └── ActivityCard  # Свёрнутое/развёрнутое, draggable
+│   └── RightPanel
+│       ├── IntensityBar      # Гистограмма нагрузки
+│       ├── Timeline
+│       │   └── DaySlot       # Drop target
+│       └── Summary
+└── MobileLayout (<640px)
+    ├── CategoryTabs + CardPalette (режим «Каталог»)
+    │   └── DayPickerModal    # Выбор дня
+    └── IntensityBar + Timeline + Summary (режим «Расписание»)
+```
+
+---
+
+## Дизайн
+
+**Концепция:** тропический журнал путешествий — тёплый, воздушный, персональный.
+
+| Элемент | Значение |
+|---------|----------|
+| Фон | Тёплый песочный `#FFF8F0` |
+| Текст | Тёмно-коричневый `#3D2B1F` |
+| Активные | Морской бирюзовый |
+| День рождения | Коралловый/розовый |
+| Отдых | Приглушённый оливковый |
+
+SVG-акценты: пальмовый лист, волна, солнце. Карточки со скруглёнными углами и тенью. День рождения 05.06 выделен особой обводкой и иконкой.
